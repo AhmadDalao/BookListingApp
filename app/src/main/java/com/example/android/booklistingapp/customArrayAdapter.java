@@ -57,26 +57,12 @@ public class customArrayAdapter extends ArrayAdapter<Books> {
 
 
         TextView book_Release_date = (TextView) listItem.findViewById(R.id.book_Release_date);
-
-        Date dateObject = new Date(books.getmTimeInMilliseconds());
-
-        // Format the date string (i.e. "Mar 3, 1984")
-        String formattedDate = formatDate(dateObject);
-
-        book_Release_date.setText(formattedDate);
+        book_Release_date.setText(books.getmDate());
 
         return listItem;
 
     }
 
-
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-    private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
-    }
 
 
 }
