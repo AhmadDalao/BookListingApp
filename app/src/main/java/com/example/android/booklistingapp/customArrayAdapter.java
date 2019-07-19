@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +32,18 @@ public class customArrayAdapter extends ArrayAdapter<Books> {
         }
 
         Books books = getItem(position);
+
+
+//        ImageView imageView = (ImageView) listItem.findViewById(R.id.book_cover);
+//        Picasso.get().load(books.getmImageUrl()).into(imageView);
+
+
+//        Picasso.get()
+//                .load(url)
+//                .resize(50, 50)
+//                .centerCrop()
+//                .into(imageView)
+
 
         TextView book_title = (TextView) listItem.findViewById(R.id.book_title);
         book_title.setText(books.getmTitle());

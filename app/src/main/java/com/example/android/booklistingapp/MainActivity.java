@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         myBooks.add(new Books("test title 3", "test author", " test Publisher", 1255555555));
         myBooks.add(new Books("test title 4 ", "test author", " test Publisher", 1255555555));
         myBooks.add(new Books("test title 5", "test author", " test Publisher", 1255555555));
+        myBooks.add(new Books("test title 6", "test author", " test Publisher", 1255555555));
 
 
         customArrayAdapter adapter = new customArrayAdapter(getApplicationContext(), myBooks);

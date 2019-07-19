@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
 
-    <color name="backgroundList">#B4BAC0</color>
+    <color name="backgroundList">#eeeeee</color>
 
     <!-- Text color for the details of the earthquake in the list item -->
     <color name="textColorEarthquakeDetails">#B4BAC0</color>
