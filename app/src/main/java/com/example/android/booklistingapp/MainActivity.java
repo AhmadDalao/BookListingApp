@@ -23,6 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Books>> {
 
+ ///almost done i sent the data to another activity
 
     /**
      * TextView that is displayed when the list is empty
@@ -75,16 +76,28 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 // Find the current earthquake that was clicked on
-                Books currentEarthquake = mAdapter.getItem(position);
+                Books currentBooks = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
-             //   Uri earthquakeUri = Uri.parse(currentEarthquake.getmUrl());
+                //   Uri earthquakeUri = Uri.parse(currentBooks.getmUrl());
 
                 // Create a new intent to view the earthquake URI
-            //    Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+                //    Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
 
                 // Send the intent to launch a new activity
-             //   startActivity(websiteIntent);
+                //   startActivity(websiteIntent);
+
+
+                Bundle bundle = new Bundle();
+                bundle.putString(myConstants.getTITLE(), currentBooks.getmTitle());
+                bundle.putString(myConstants.getAUTHOR(), currentBooks.getmAuthor());
+                bundle.putString(myConstants.getPUBLISHER(), currentBooks.getmPublisher());
+                bundle.putString(myConstants.getDATE(), currentBooks.getmDate());
+                bundle.putString(myConstants.getDESCRIPTION(), currentBooks.getmDescription());
+                bundle.putString(myConstants.getURL(), currentBooks.getmUrl());
+                Intent intent = new Intent(MainActivity.this, detail.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
 
             }

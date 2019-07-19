@@ -79,13 +79,23 @@ public class QueryUtils {
                 // Extract the value for the key called "publishedDate"
                 String publishedDate = properties.getString("publishedDate");
 
+                // Extract the value for the key called "description"
+                String description = properties.getString("description");
 
+
+                String url = properties.getString("previewLink");
+
+                // Extract the JSONArray associated with the key called "authors",
+                // which represents a list of authors (or author).
                 JSONArray authorArray = properties.getJSONArray("authors");
 
                 String author = null;
                 for (int j = 0; j < authorArray.length(); j++) {
+
                     author = authorArray.getString(j);
                 }
+
+
 
 
                 // Extract the value for the key called "url"
@@ -94,7 +104,7 @@ public class QueryUtils {
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
 
-                Books books = new Books(title, author, publisher, publishedDate);
+                Books books = new Books(title, author, publisher, publishedDate , description , url);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 booksList.add(books);
