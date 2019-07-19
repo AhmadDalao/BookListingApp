@@ -7,6 +7,7 @@ public class Books {
     private String mPublisher;
     private String mDescription;
     private String mImageUrl;
+    private String mDate;
     private long mTimeInMilliseconds;
 
 
@@ -22,14 +23,16 @@ public class Books {
     }
 
 
-    // testing
-    public Books(String mTitle, String mAuthor, String mPublisher, long mTimeInMilliseconds) {
+    public String getmDate() {
+        return mDate;
+    }
+
+    public Books(String mTitle, String mAuthor, String mPublisher, String mDate) {
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
         this.mPublisher = mPublisher;
-        this.mTimeInMilliseconds = mTimeInMilliseconds;
+        this.mDate = mDate;
     }
-
 
     public String getmTitle() {
         return mTitle;

@@ -5,4 +5,5 @@
     <string name="check_your_connection">No internet connection</string>
     <string name="just_an_image">TODO</string>
     <string name="publish_date">Publish date</string>
+    <string name="no_internet_connection">No internet connection</string>
 </resources>
