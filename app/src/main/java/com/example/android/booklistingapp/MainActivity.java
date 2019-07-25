@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +23,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Books>> {
 
- ///almost done i sent the data to another activity
+    ///almost done i sent the data to another activity
+
+    private String userInput;
+
 
     /**
      * TextView that is displayed when the list is empty
@@ -39,9 +42,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
     /**
-     * Sample JSON response for a USGS query
+     * Sample JSON response for a BOOK query
      */
-    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
+    // private static final String BOOK_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
+
+    private String BOOK_REQUEST_URL = "";
+
+
+    /**
+     * taking the query string from the user
+     */
 
 
     /**
@@ -53,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // private static final String BOOK_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
+
+
+
 
         emptyview = (TextView) findViewById(R.id.emptyState);
 
@@ -104,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         // Start the AsyncTask to fetch the earthquake data
-        BooksAsyncTask task = new BooksAsyncTask();
-        task.execute(USGS_REQUEST_URL);
+        //     BooksAsyncTask task = new BooksAsyncTask();
+        //   task.execute(BOOK_REQUEST_URL);
 
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -134,6 +150,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             // Update empty state with no connection error message
             emptyview.setText(R.string.no_internet_connection);
         }
+    } // end of onCreate
+
+
+    public void searchBooks(View view) {
+
+
+        EditText editText = (EditText) findViewById(R.id.myEditText);
+        userInput = editText.getText().toString();
+        // Base URI for the Books API.
+        final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+        final String MAX_RESULTS = "&maxResults=10"; // Parameter that limits search results.
+
+
+        BOOK_REQUEST_URL = BOOK_BASE_URL + userInput + MAX_RESULTS;
+
+        // Start the AsyncTask to fetch the earthquake data
+        BooksAsyncTask task = new BooksAsyncTask();
+        task.execute(BOOK_REQUEST_URL);
+
+
     }
 
 
@@ -141,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<Books>> onCreateLoader(int i, @Nullable Bundle bundle) {
         // TODO: Create a new loader for the given URL
-        return new BooksLoader(this, USGS_REQUEST_URL);
+        return new BooksLoader(this, BOOK_REQUEST_URL);
 
     }
 
