@@ -80,7 +80,7 @@ public class QueryUtils {
                 String publishedDate = properties.getString("publishedDate");
 
                 // Extract the value for the key called "description"
-                String description = properties.getString("description");
+                String description = properties.getString("description"); //ToDo getting no value error !!
 
 
                 String url = properties.getString("previewLink");

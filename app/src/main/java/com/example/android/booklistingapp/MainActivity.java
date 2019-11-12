@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     // private static final String BOOK_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
 
-    private String BOOK_REQUEST_URL = "";
+    private String BOOK_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
 
 
     /**
@@ -66,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         // private static final String BOOK_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
-
-
 
 
         emptyview = (TextView) findViewById(R.id.emptyState);
@@ -119,10 +118,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-        // Start the AsyncTask to fetch the earthquake data
-        //     BooksAsyncTask task = new BooksAsyncTask();
-        //   task.execute(BOOK_REQUEST_URL);
-
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -158,18 +153,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         EditText editText = (EditText) findViewById(R.id.myEditText);
         userInput = editText.getText().toString();
-        // Base URI for the Books API.
-        final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=";
-        final String MAX_RESULTS = "&maxResults=10"; // Parameter that limits search results.
+        if (userInput.isEmpty()) {
+
+            Toast.makeText(this,"You should search something first" , Toast.LENGTH_LONG).show();
+
+        } else {
+            // Base URI for the Books API.
+            final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+            final String MAX_RESULTS = "&maxResults=10"; // Parameter that limits search results.
 
 
-        BOOK_REQUEST_URL = BOOK_BASE_URL + userInput + MAX_RESULTS;
+            BOOK_REQUEST_URL = BOOK_BASE_URL + userInput + MAX_RESULTS;
 
-        // Start the AsyncTask to fetch the earthquake data
-        BooksAsyncTask task = new BooksAsyncTask();
-        task.execute(BOOK_REQUEST_URL);
+            // Start the AsyncTask to fetch the earthquake data
+            BooksAsyncTask task = new BooksAsyncTask();
+            task.execute(BOOK_REQUEST_URL);
 
-
+        }
     }
 
 
