@@ -1,6 +1,6 @@
 # BookListingApp
 
-This is a Simple Book Listing app which would allow a user to get a list of published books on a given topic. made with using Google Book's Api.
+This is a Simple Book Listing app that would allow a user to get a list of published books on a given topic. made by using Google Book's Api.
 
 # Pre-requisites
 
