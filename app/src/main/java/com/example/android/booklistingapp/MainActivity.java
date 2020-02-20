@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * taking the query string from the user
      */
 
-
+      private   String userUrl;
     /**
      * Adapter for the list of earthquakes
      */
@@ -163,11 +163,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             final String MAX_RESULTS = "&maxResults=10"; // Parameter that limits search results.
 
 
-            BOOK_REQUEST_URL = BOOK_BASE_URL + userInput + MAX_RESULTS;
+            userUrl = BOOK_BASE_URL + userInput + MAX_RESULTS;
 
             // Start the AsyncTask to fetch the earthquake data
             BooksAsyncTask task = new BooksAsyncTask();
-            task.execute(BOOK_REQUEST_URL);
+            task.execute(userUrl);
 
         }
     }
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<Books>> onCreateLoader(int i, @Nullable Bundle bundle) {
         // TODO: Create a new loader for the given URL
-        return new BooksLoader(this, BOOK_REQUEST_URL);
+        return new BooksLoader(this, userUrl);
 
     }
 

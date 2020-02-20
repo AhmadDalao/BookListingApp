@@ -68,38 +68,32 @@ public class QueryUtils {
                 // For a given earthquake, extract the JSONObject associated with the
                 // key called "properties", which represents a list of all properties
                 // for that books.
-                JSONObject properties = currentBook.getJSONObject("volumeInfo");
+                JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
 
                 // Extract the value for the key called "title"
-                String title = properties.getString("title");
+                String title = volumeInfo.getString("title");
 
                 // Extract the value for the key called "publisher"
-                String publisher = properties.getString("publisher");
+                String publisher = volumeInfo.getString("publisher");
 
                 // Extract the value for the key called "publishedDate"
-                String publishedDate = properties.getString("publishedDate");
+                String publishedDate = volumeInfo.getString("publishedDate");
 
                 // Extract the value for the key called "description"
-                String description = properties.getString("description"); //ToDo getting no value error !!
+                String description = volumeInfo.getString("description"); //ToDo getting no value error !!
 
 
-                String url = properties.getString("previewLink");
+                String url = volumeInfo.getString("previewLink");
 
                 // Extract the JSONArray associated with the key called "authors",
                 // which represents a list of authors (or author).
-                JSONArray authorArray = properties.getJSONArray("authors");
+                JSONArray authorArray = volumeInfo.getJSONArray("authors");
 
-                String author = null;
+                String author = "";
                 for (int j = 0; j < authorArray.length(); j++) {
 
                     author = authorArray.getString(j);
                 }
-
-
-
-
-                // Extract the value for the key called "url"
-                //  String url = properties.getString("url");
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
@@ -114,6 +108,7 @@ public class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
+            //ToDo getting some error here i don't know why.
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
